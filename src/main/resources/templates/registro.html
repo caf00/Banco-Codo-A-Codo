@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/layout :: head"></head>
+<body>
+<nav th:replace="/layout/layout :: nav">
+</nav>
+<div class="container">
+    <a th:href="@{/}">Volver</a>
+    <div class="card col-6 offset-3">
+        <div class="card-title">
+            <h4 class = "p-2">Registro de Clientes</h4>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/guardar}" method="post" th:object = "${cliente}">
+                <div class="mb-3">
+                    <label for="dni" class="form-label">Dni</label>
+                    <input th:field = "*{dni}" type="text" class="form-control" id="dni" pattern="[0-9]+" required>
+                    <small class="form-text text-danger" th:if = "${#fields.hasErrors('dni')}" th:errors = "*{dni}"></small>
+                </div>
+                <div class="mb-3">
+                    <label for="nombres" class="form-label">Nombre Completo</label>
+                    <input th:field = "*{nombre}" type="text" class="form-control" id="nombres" required>
+                    <small class="form-text text-danger" th:if = "${#fields.hasErrors('nombre')}" th:errors = "*{nombre}"></small>
+                </div>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/layout :: head"></head>
+<body>
+<nav th:replace="/layout/layout :: nav">
+</nav>
+<div class="container">
+    <a href="#" onclick="window.history.go(-1);">Volver</a>
+    <div class="card col-6 offset-3 mt-5">
+        <div class="card-title">
+            <h4 class = "p-2"><span th:text="${movimiento.nombre}"></span> - Movimientos</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" th:action="@{/movimiento}" th:object="${movimiento}">
+                <div class="text-center">
+                    <input type="hidden" th:field = "*{dni}" value="${movimiento.dni}">
+                    <input type="number" th:field = "*{monto}" placeholder="Ingrese un Monto" min="1" step=".1">
+                    <select th:field="*{tipo}">
+                        <option th:value="'dep'" th:text="Depositar"></option>
+                        <option th:value="'ext'" th:text="Extraer"></option>
+                    </select>
+                </div>
+                <div class="text-end">
+                    <input class="m-3" type="submit" value="Aceptar Movimiento">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+</body>
+</html>
